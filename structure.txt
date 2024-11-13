@@ -1,0 +1,3 @@
+[Raw Data Extraction] / [every-outputs-data] / [Clean Data + Preparation for Orbitaal] / [Build Node Table ] / [Build Stream Graph] / [Modify Created Directories and files] / [Add Address information file] / [Clean temporary files and directories] / [Build Snapshot]
+
+utils.py contains every functions needed to go from every-output-data to Complete Orbitaal dataset
