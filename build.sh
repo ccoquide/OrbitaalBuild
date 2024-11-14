@@ -1,3 +1,4 @@
+#!/bin/bash
 python3.8 cleanData.py /media/ssd4/bitcoinRemy/outputs_actors_everything /media/ssd4/celestin
 python3.8 createNodeTables.py /media/ssd4/celestin
 python3.8 createTemporalNetwork.py /media/ssd4/celestin/Prepared_Data /media/ssd4/celestin
