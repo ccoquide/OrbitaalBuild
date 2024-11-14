@@ -1,8 +1,9 @@
+import sys
 from collections import defaultdict as ddict
 from pyspark.sql import SparkSession
 from pyspark.sql.functions import col
 import datetime
-from bitunam_utils import writeNodeTable, getTimeDiff
+from orbitaal_utils import writeNodeTable, getTimeDiff
 
 t_0=datetime.datetime.now()
 ### Init pyspark session
@@ -16,7 +17,7 @@ spark = SparkSession \
 spark.sparkContext.uiWebUrl
 
 ### Work Path
-PATH="/media/ssd4/celestin"
+PATH=sys.argv[1]
 
 ### Reading cleaned data as pyspark df
 pydf=spark.read.load(f"{PATH}/Prepared_Data")

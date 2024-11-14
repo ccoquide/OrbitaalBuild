@@ -2,7 +2,7 @@ import sys
 from pyspark.sql import SparkSession
 from pyspark.sql.functions import col
 import datetime
-from bitunam_utils import getTimeDiff, write_TEMPORAL
+from orbitaal_utils import getTimeDiff, write_TEMPORAL
 spark = SparkSession \
     .builder \
     .config("spark.driver.memory", "100g") \

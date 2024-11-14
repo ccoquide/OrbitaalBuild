@@ -1,7 +1,7 @@
 import sys
 from pyspark.sql import SparkSession
 import datetime
-from bitunam_utils import getTimeDiff, write_SNAPSHOT
+from orbitaal_utils import getTimeDiff, write_SNAPSHOT
 
 ### Timezone
 timezone="GMT"

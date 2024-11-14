@@ -2,7 +2,7 @@ import sys
 from pyspark.sql import SparkSession
 from pyspark.sql.functions import col, when
 import datetime
-from bitunam_utils import getTimeDiff
+from orbitaal_utils import getTimeDiff
 
 ### Init pyspark session
 spark = SparkSession \
