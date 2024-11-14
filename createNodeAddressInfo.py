@@ -17,9 +17,9 @@ spark.sparkContext.uiWebUrl
 t_0=datetime.datetime.now()
 
 ### PATH to node table
-PATH_I_1="/media/ssd4/celestin/TEMPORAL/network_2009_2021_name"
-PATH_I_2="/media/ssd4/celestin/NODE_TABLE"
-PATH_I_3="/media/ssd4/bitcoinRemy/2022_df_parts/address_info"
+PATH_I_1=sys.argv[1]#directory to node table with old ids
+PATH_I_2=sys.argv[2]#directory to node table with new ids
+PATH_I_3=sys.argv[3]#directory to address info
 
 ###Adding columns with list of public keys related to entities in the node table
 
