@@ -36,7 +36,7 @@ selectedColumns=[
     "trID", "nb_inputs", "id_src", "src_cl", "src_identity_radical", "id_dst", "dst_cl", "dst_identity_radical", "value", "valueUSD", "PriceUSD","timestamp", "year", "fee", "bloc", "output_id", "nb_outputs"
     ]
 outputs=spark.read.load(PATH_I)\
-    .select(*selectedColumns)
+    .select("trID", "nb_inputs", "id_src", "src_cl", "src_identity_radical", "id_dst", "dst_cl", "dst_identity_radical", "value", "valueUSD", "PriceUSD","timestamp", "year", "fee", "bloc", "output_id", "nb_outputs")
 
 ### Handle null src cl, dst cl and duplicated src_best_name and dst_best_name
 outputs_=CleanData(outputs)
