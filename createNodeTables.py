@@ -1,4 +1,3 @@
-import sys
 from collections import defaultdict as ddict
 from pyspark.sql import SparkSession
 from pyspark.sql.functions import col
