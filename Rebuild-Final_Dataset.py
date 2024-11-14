@@ -51,11 +51,7 @@ for YEAR in net.select("year").distinct().collect():
     print("file wrote in", getTimeDiff(t__))
 print(f"Rebuild node table and stream graph directories done in {getTimeDiff(t_0)}")
 
-### Removing old files and directories
-for file in os.listdir(f"{PATH}/TEMPORAL/bis_2_network_2009_2021_name/"):
-    os.remove(f"{PATH}/TEMPORAL/bis_2_network_2009_2021_name/{file}")
-os.removedirs(f"{PATH}/TEMPORAL/bis_2_network_2009_2021_name")
-
+### Removing old files and directories related to stream graph
 for file in os.listdir(f"{PATH}/TEMPORAL/bis_2_network_2009_2021.parquet"):
     os.remove(f"{PATH}/TEMPOAL/bis_2_network_2009_2021.parquet/{file}")
 os.removedirs(f"{PATH}/TEMPORAL/bis_2_network_2009_2021.parquet")
