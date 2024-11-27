@@ -117,9 +117,9 @@ for dirpath,dirnames,filenames in os.walk(OLDPATH):
                     new=[f'{NEWPATH}/{DIR[len(ext.split("-"))-1]}/orbitaal-snapshot-date-{ext}-file-id-{zz+1}.snappy.parquet', f'{NEWPATH}/ALL/orbitaal-snapshot-part-{zz_+1}.snappy.parquet'][int("ALL" in dirpath)]
                     os.rename(old,new)
                     zz+=1
-df=spark.read.parquet("/media/ssd4/celestin/SNAPSHOT_NEW/EDGES/year/*.parquet")
+df=spark.read.parquet(f"{NEWPATH}/year/*.parquet")
 df=df.groupBy("SRC_ID","DST_ID").agg(sum("VALUE_SATOSHI").alias("VALUE_SATOSHI"),sum("VALUE_USD").alias("VALUE_USD"))
-df.coalesce(1).write.mode("overwrite").parquet("/media/ssd4/celestin/SNAPSHOT_NEW/EDGES/ALL")
+df.coalesce(1).write.mode("overwrite").parquet(f"{NEWPATH}/ALL")
 for dirpath, dirnames,filenames in os.walk(f'{NEWPATH}/ALL'):
     for f in filenames:
         if f.endswith(".parquet"):

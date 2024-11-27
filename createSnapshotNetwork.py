@@ -34,7 +34,7 @@ spark.sparkContext.uiWebUrl
 t_0=datetime.datetime.now()
 
 ### Work Path
-PATH="/media/ssd4/celestin"
+PATH=sys.argv[1]
 
 fname=f"{PATH}/STREAM_GRAPH/EDGES/year*/"
 
