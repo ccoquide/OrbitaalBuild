@@ -36,5 +36,12 @@ rm -R ${PATH_W}/${Dir_4}/; mv ${PATH_W}/STREAM_GRAPH_NEW/ ${PATH_W}/${Dir_4}/
 python3.8 finalSnapshotFilesRenaming.py ${PATH_W}
 rm -R ${PATH_W}/${Dir_5}/; mv ${PATH_W}/SNAPSHOT_NEW/ ${PATH_W}/${Dir_5}/
 
+### Renaming user details DataFrame and suppresion of unecessary PySpark created files
+mv ${PATH_W}/${Dir_3}/part-*.snappy.parquet ${PATH_W}/${Dir_3}/orbitaal-nodetable.snappy.parquet
+rm ${PATH_W}/${Dir_3}/.*.crc
+rm ${PATH_W}/${Dir_3}/_SUCCESS
+mv ${PATH_W}/${Dir_3}/add_info/part-*.snappy.parquet ${PATH_W}/${Dir_3}/orbitaal-listaddresses.snappy.parquet
+rm -R ${PATH_W}/${Dir_3}/add_info
+
 ### Building the CSV sample for the stream graph and snapshot
 python3.8 buildCSVSample.py ${PATH_W}
