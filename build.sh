@@ -45,3 +45,12 @@ rm -R ${PATH_W}/${Dir_3}/add_info
 
 ### Building the CSV sample for the stream graph and snapshot
 python3.8 buildCSVSample.py ${PATH_W}
+
+### Creating tar.gz archive of the dataset (use of pigz for faster compression time)
+tar --use-compress-program="pigz --best --recursive| pv" -cf ${PATH_W}/orbitaal-nodetable.tar.gz ${PATH_W}/NODE_TABLE/*.parquet
+tar --use-compress-program="pigz --best --recursive| pv" -cf ${PATH_W}/orbitaal-snapshot-hour.tar.gz ${PATH_W}/SNAPSHOT/EDGES/hour/
+tar --use-compress-program="pigz --best --recursive| pv" -cf ${PATH_W}/orbitaal-snapshot-day.tar.gz ${PATH_W}/SNAPSHOT/EDGES/day/*.parquet
+tar --use-compress-program="pigz --best --recursive| pv" -cf ${PATH_W}/orbitaal-snapshot-month.tar.gz ${PATH_W}/SNAPSHOT/EDGES/month/*.parquet
+tar --use-compress-program="pigz --best --recursive| pv" -cf ${PATH_W}/orbitaal-snapshot-year.tar.gz ${PATH_W}/SNAPSHOT/EDGES/year/*.parquet
+tar --use-compress-program="pigz --best --recursive| pv" -cf ${PATH_W}/orbitaal-snapshot-all.tar.gz ${PATH_W}/SNAPSHOT/EDGES/ALL/*.parquet
+tar --use-compress-program="pigz --best --recursive| pv" -cf ${PATH_W}/orbitaal-stream_graph.tar.gz ${PATH_W}/STREAM_GRAPH/EDGES/*.parquet
