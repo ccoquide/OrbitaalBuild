@@ -52,7 +52,7 @@ for dir in ["2016_07_08.csv","2016_07_09.csv"]:
     PATH_=f'{PATH_O}/{dir}'
     for filename in os.listdir(PATH_):
         if filename.endswith(".csv"):
-            os.rename(f'{PATH_}/{filename}',f'{PATH_O}/{pref}-{dir}')
+            os.rename(f'{PATH_}/{filename}',f'{PATH}/{pref}-{dir}')
         else:
             os.remove(f'{PATH_}/{filename}')
     os.rmdir(PATH_)
@@ -75,7 +75,7 @@ for dir in ["2016_07_08.csv","2016_07_09.csv"]:
     PATH_=f'{PATH_O}/{dir}'
     for filename in os.listdir(PATH_):
         if filename.endswith(".csv"):
-            os.rename(f'{PATH_}/{filename}',f'{PATH_O}/{pref}-{dir}')
+            os.rename(f'{PATH_}/{filename}',f'{PATH}/{pref}-{dir}')
         else:
             os.remove(f'{PATH_}/{filename}')
     os.rmdir(PATH_)
