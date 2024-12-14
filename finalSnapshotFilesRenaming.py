@@ -21,7 +21,7 @@ import matplotlib.pyplot as plt
 import plotly
 import plotly.express as px
 import datetime
-from bitunam_utils import getTimeDiff
+from orbitaal_utils import getTimeDiff
 #pd.options.plotting.backend = "plotly"
 import plotly.io as pio
 import pytz

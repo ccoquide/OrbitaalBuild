@@ -1,6 +1,7 @@
 import sys
 from pyspark.sql import SparkSession
 from pyspark.sql.functions import col, when
+from pyspark.sql.types import IntegerType,StructField,StructType, LongType, FloatType
 import datetime
 from orbitaal_utils import getTimeDiff
 
@@ -16,10 +17,30 @@ spark = SparkSession \
 spark.sparkContext.uiWebUrl
 t_0=datetime.datetime.now()
 
-### PATH to node table
+### PATH to node table #OLD Version
+#PATH_I_1=sys.argv[1]#directory to node table with old ids
+#PATH_I_2=sys.argv[2]#directory to node table with new ids
+#PATH_I_3=sys.argv[3]#directory to address info
+
+#Reading addresses information data, adID2cl and ad2id
+#adID2cl=spark.read.parquet(f"{PATH_I_3}/adID2cl")
+#ad2id=spark.read.parquet(f"{PATH_I_3}/ad2id")\
+#    .withColumnRenamed("id","ID_")
+
+### PATH to enriched data #NEW Version
 PATH_I_1=sys.argv[1]#directory to node table with old ids
 PATH_I_2=sys.argv[2]#directory to node table with new ids
-PATH_I_3=sys.argv[3]#directory to address info
+PATH_I_3=sys.argv[3]#directory to enriched data (containing address info)
+tmp=spark.read.parquet(f"{PATH_I_3}")
+for c,dt in tmp.dtypes:
+    if c in ["src_cl","dst_cl"]:
+        tmp=tmp.withColumn(c, col(c).cast(LongType()))
+ad2id=tmp.select("src","id_src").withColumnRenamed("src","ad").withColumnRenamed("id_src","ID_")
+ad2id=ad2id.union(tmp.select("dst","id_dst").withColumnRenamed("dst","ad").withColumnRenamed("id_dst","ID_"))
+ad2id=ad2id.dropDuplicates()
+adID2cl=tmp.select("id_src","src_cl").withColumnRenamed("id_src","adID").withColumnRenamed("src_cl","cl")
+adID2cl=adID2cl.union(tmp.select("id_dst","dst_cl").withColumnRenamed("id_dst","adID").withColumnRenamed("dst_cl","cl"))
+del(tmp)
 
 ###Adding columns with list of public keys related to entities in the node table
 
@@ -44,15 +65,11 @@ if not tst_ok:
 print("Positive match")
 del(table_oldID)
 
-#Reading addresses information data, adID2cl and ad2id
-adID2cl=spark.read.parquet(f"{PATH_I_3}/adID2cl")
-ad2id=spark.read.parquet(f"{PATH_I_3}/ad2id")\
-    .withColumnRenamed("id","ID_")
-print("done")
 
 #joining to get match with cluster id
-table=table.join(adID2cl,table.OLD_ID==adID2cl.cl,"left")\
-    .withColumn("adID", when(col("OLD_ID")>=0, col("adID")).otherwise(-col("OLD_ID")))
+#table=table.join(adID2cl,table.OLD_ID==adID2cl.cl,"left")\
+#    .withColumn("adID", when(col("OLD_ID")>=0, col("adID")).otherwise(-col("OLD_ID")))# OLD version
+table=table.join(adID2cl,table.OLD_ID==adID2cl.cl,"left")# NEW version
 print("done")
 add_info=ad2id.join(table,ad2id["ID_"]==table.adID,"left")\
     .select("ID","NAME","ad")\

@@ -27,15 +27,15 @@ spark = SparkSession \
 spark.sparkContext.uiWebUrl
 
 ### Path to input data
-PATH_I=sys.argv[1]
+PATH_I=sys.argv[2]
 ### Path to output cleaned data
-PATH_O=sys.argv[2]
-
+PATH_O=sys.argv[1]
+print(PATH_I)
 ### Reading whole data as pyspark df
 selectedColumns=[
     "trID", "nb_inputs", "id_src", "src_cl", "src_identity_radical", "id_dst", "dst_cl", "dst_identity_radical", "value", "valueUSD", "PriceUSD","timestamp", "year", "fee", "bloc", "output_id", "nb_outputs"
     ]
-outputs=spark.read.load(PATH_I)\
+outputs=spark.read.parquet(PATH_I)\
     .select("trID", "nb_inputs", "id_src", "src_cl", "src_identity_radical", "id_dst", "dst_cl", "dst_identity_radical", "value", "valueUSD", "PriceUSD","timestamp", "year", "fee", "bloc", "output_id", "nb_outputs")
 print(outputs.columns)
 

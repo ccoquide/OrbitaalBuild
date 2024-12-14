@@ -53,6 +53,9 @@ def CleanData(outputs_subset):
     print("There are ", Nmining*100.0/Ntot, " % of all transactions without inputs")
     
     #Set temporary IDs for transactions with null src_cl and dst_cl + mining node
+    for c,dt in outputs_subset.dtypes:
+        if c in ["src_cl", "dst_cl"]:
+            outputs_subset=outputs_subset.withColumn(c, col(c).cast(LongType()))
     outputs_subset=WithNewID(outputs_subset)
     
     #Set src_identity_radical of mining transactions to MINING
@@ -131,6 +134,7 @@ def WithNewID(pydf):
     #Set ID for mining node
     min_srcid=rez.select(min("src_cl")).collect()[0][0]
     min_dstid=rez.select(min("dst_cl")).collect()[0][0]
+    print(min_srcid, min_dstid)
     minning_id=int(np.array([int(min_srcid), int(min_dstid)]).min())-1
     rez=rez.withColumn("src_cl", when((col("src_cl").isNull()) & (col("Mining")==True), minning_id).otherwise(col("src_cl")))
     return rez
