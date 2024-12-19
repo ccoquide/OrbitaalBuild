@@ -32,9 +32,6 @@ PATH_I_1=sys.argv[1]#directory to node table with old ids
 PATH_I_2=sys.argv[2]#directory to node table with new ids
 PATH_I_3=sys.argv[3]#directory to enriched data (containing address info)
 tmp=spark.read.parquet(f"{PATH_I_3}")
-for c,dt in tmp.dtypes:
-    if c in ["src_cl","dst_cl"]:
-        tmp=tmp.withColumn(c, col(c).cast(LongType()))
 ad2id=tmp.select("src","id_src").withColumnRenamed("src","ad").withColumnRenamed("id_src","ID_")
 ad2id=ad2id.union(tmp.select("dst","id_dst").withColumnRenamed("dst","ad").withColumnRenamed("id_dst","ID_"))
 ad2id=ad2id.dropDuplicates()
@@ -74,6 +71,7 @@ print("done")
 add_info=ad2id.join(table,ad2id["ID_"]==table.adID,"left")\
     .select("ID","NAME","ad")\
     .orderBy("ID")
+add_info=add_info.dropDuplicates()
 print("done")
 
 #freeing memory
