@@ -1,4 +1,4 @@
-<img src="logo.png" alt="Orbitaal_logo" width="200">
+![Logo](logo.png)
 
 # OrbitaalBuild
 
