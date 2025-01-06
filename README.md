@@ -20,8 +20,12 @@ Required package:
 
 The first step is to construct a DataFrame considering all Bitcoin transactions' outputs information from raw json. The bash builder script located at `./raw_data/build.sh` construct this DataFrame and other informative dictionary from the original json covering the 6000 first blocks (`./raw_data/data/sources/original_json`)
 
+All python scripts and associated data are located at `./raw_data`
+
 ### Constructing all Orbitaal temporal graphs and nodes information tables
 
 Stream graph and snashots composing the Orbitaal dataset is built from the transactions' outputs dataframe generated with the previous step. Users have to execputing the builder located at `./build.sh` to automatically construct the Orbitaal dataset based on the 6000 first blocks.
+
+All python scripts are located in the root. The folder `./DataSet` contains Orbitaal associated DataFrames in the `parquet` format.
 
 
