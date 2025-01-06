@@ -11,10 +11,17 @@ This repository contains Python and Bash scripts used for generating the ORBITAA
 - **Operating System**: Linux is required to execute the Bash scripts. For other operating systems, follow the instructions provided in the Bash scripts.
 - **Python Version**: 3.8
 - **Required Python Packages**:
-  - `pyspark`: 3.5.0
-  - `numpy`: 1.24.4
-  - `pandas`: 2.0.3
-  - `pytz`: 2024.1
+  - `numpy==1.24.4`
+  - `pandas==2.0.3`
+  - `pkg_resources==0.0.0`
+  - `py4j==0.10.9.7`
+  - `pyspark==3.5.0`
+  - `python-dateutil==2.9.0.post0`
+  - `pytz==2024.1`
+  - `six==1.17.0`
+  - `tzdata==2024.2`
+
+  Required packages and version can be installed using `python3.8 install_requirements.py` 
 
 ## Generating Raw Data with Transaction Outputs Information
 
