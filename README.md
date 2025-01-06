@@ -13,13 +13,8 @@ This repository contains Python and Bash scripts used for generating the ORBITAA
 - **Required Python Packages**:
   - `numpy==1.24.4`
   - `pandas==2.0.3`
-  - `pkg_resources==0.0.0`
-  - `py4j==0.10.9.7`
   - `pyspark==3.5.0`
-  - `python-dateutil==2.9.0.post0`
   - `pytz==2024.1`
-  - `six==1.17.0`
-  - `tzdata==2024.2`
 
   Required packages and version can be installed using `python3.8 install_requirements.py` 
 
