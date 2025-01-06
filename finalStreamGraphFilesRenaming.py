@@ -16,14 +16,8 @@ from pyspark.sql import Window
 from pyspark.sql.functions import row_number    
 from pyspark.sql.functions import monotonically_increasing_id, coalesce, date_trunc, regexp_extract
 import pandas as pd
-import seaborn as sns
-import matplotlib.pyplot as plt
-import plotly
-import plotly.express as px
 import datetime
 from orbitaal_utils import getTimeDiff
-#pd.options.plotting.backend = "plotly"
-import plotly.io as pio
 import pytz
 
 ### Init pyspark session
