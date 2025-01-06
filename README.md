@@ -1,5 +1,5 @@
 <p align="left" style="margin-bottom: 400px;">
-  <img src="logo.png" alt="Logo" width="200">
+  <img src="logo.png" alt="Logo" width="100">
 </p>
 
 # OrbitaalBuild
