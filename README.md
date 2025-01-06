@@ -1,7 +1,6 @@
 <p align="left">
 <img src="logo.png" alt="Orbitaal_logo" width="200">
 </p>
-
 # OrbitaalBuild
 
 This repository contains Python and Bash scripts used for generating the ORBITAAL dataset, available at [Zenodo](https://zenodo.org/records/12581515). Interested users can construct a smaller version of this dataset, covering the period from January 3, 2009, to June 9, 2010, using the two Bash scripts provided: `./raw_data/build.sh` and `./build.sh`.
