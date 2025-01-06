@@ -1,6 +1,6 @@
 #!/bin/bash
 PATH_W="./DataSet"
-PATH_1="./raw_data/transactions_enriched"
+PATH_1="./raw_data/enrichedOutputs"
 Dir_1="Prepared_Data"
 Dir_2="TEMPORAL"
 Dir_3="NODE_TABLE"
