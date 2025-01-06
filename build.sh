@@ -1,6 +1,6 @@
 #!/bin/bash
-PATH_W="./DataSet"
-PATH_1="./raw_data/data/final/enrichedOutputs"
+PATH_W="DataSet"
+PATH_1="raw_data/data/final/enrichedOutputs"
 Dir_1="Prepared_Data"
 Dir_2="TEMPORAL"
 Dir_3="NODE_TABLE"
@@ -34,6 +34,9 @@ rm -R ${PATH_W}/${Dir_4}/; mv ${PATH_W}/STREAM_GRAPH_NEW/ ${PATH_W}/${Dir_4}/
 ### Reshape the dataset files and directories for simpler access in case of snapshot
 python3.8 finalSnapshotFilesRenaming.py ${PATH_W}
 rm -R ${PATH_W}/${Dir_5}/; mv ${PATH_W}/SNAPSHOT_NEW/ ${PATH_W}/${Dir_5}/
+
+### Build CSV files associated to stream graph and daily snapshot for two specific dates
+python3.8 buildCSVSample.py ${PATH_W}
 
 ### Renaming user details DataFrame and suppresion of unecessary PySpark created files
 for f in $(find ./ -name .*.crc); do rm ${f}; done

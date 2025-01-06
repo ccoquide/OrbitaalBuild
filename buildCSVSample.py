@@ -33,22 +33,28 @@ spark.sparkContext.uiWebUrl
 
 ### Work Path
 PATH=sys.argv[1]
-print("Build sample for two specific days : 2016-07-08 and 2016-07-09")
+date_1={"year":"2009","month":"06","day":"01"}
+date_2={"year":"2010","month":"06","day":"01"}
+print(f"Build sample for two specific days : {date_1} and {date_2}")
 
 ### Writing stream graph samples in csv
 pref="orbitaal-stream_graph"
 PATH_I=f"{PATH}/STREAM_GRAPH/EDGES"
 PATH_O=f"{PATH}/STREAM_GRAPH"
 print("Building STREAM GRAPH samples in csv")
-net=spark.read.parquet(f'{PATH_I}/orbitaal-stream_graph-date-2016-*.parquet')\
+net=spark.read.parquet(f'{PATH_I}/orbitaal-stream_graph-date-{date_1["year"]}-*.parquet')\
     .withColumn("year", year(from_unixtime(col("TIMESTAMP"))))\
     .withColumn("month", month(from_unixtime(col("TIMESTAMP"))))\
     .withColumn("day", dayofmonth(from_unixtime(col("TIMESTAMP"))))
-net_=net.filter(col("year")==2016).filter(col("month")==7).filter(col("day")==8).drop("year","month","day")
-net_.coalesce(1).write.mode("overwrite").csv(f"{PATH_O}/2016_07_08.csv/", header=True)
-net_=net.filter(col("year")==2016).filter(col("month")==7).filter(col("day")==9).drop("year","month","day")
-net_.coalesce(1).write.mode("overwrite").csv(f"{PATH_O}/2016_07_09.csv/", header=True)
-for dir in ["2016_07_08.csv","2016_07_09.csv"]:
+net_=net.filter(col("year")==int(date_1["year"])).filter(col("month")==int(date_1["month"])).filter(col("day")==int(date_1["day"])).drop("year","month","day")
+net_.coalesce(1).write.mode("overwrite").csv(f'{PATH_O}/{date_1["year"]}_{date_1["month"]}_{date_1["day"]}.csv/', header=True)
+net=spark.read.parquet(f'{PATH_I}/orbitaal-stream_graph-date-{date_2["year"]}-*.parquet')\
+    .withColumn("year", year(from_unixtime(col("TIMESTAMP"))))\
+    .withColumn("month", month(from_unixtime(col("TIMESTAMP"))))\
+    .withColumn("day", dayofmonth(from_unixtime(col("TIMESTAMP"))))
+net_=net.filter(col("year")==int(date_2["year"])).filter(col("month")==int(date_2["month"])).filter(col("day")==int(date_2["day"])).drop("year","month","day")
+net_.coalesce(1).write.mode("overwrite").csv(f'{PATH_O}/{date_2["year"]}_{date_2["month"]}_{date_2["day"]}.csv/', header=True)
+for dir in [f'{date_1["year"]}_{date_1["month"]}_{date_1["day"]}.csv',f'{date_2["year"]}_{date_2["month"]}_{date_2["day"]}.csv']:
     PATH_=f'{PATH_O}/{dir}'
     for filename in os.listdir(PATH_):
         if filename.endswith(".csv"):
@@ -61,17 +67,12 @@ print("DONE")
 pref="orbitaal-snapshot"
 PATH_I=f"{PATH}/SNAPSHOT/EDGES/day"
 PATH_O=f"{PATH}/SNAPSHOT"
-date={}
-date["year"]="2016"
-date["month"]="07"
-date["day"]="08"
-print("Building STREAM GRAPH samples in csv")
-net=spark.read.parquet(f"{PATH_I}/orbitaal-snapshot-date-{date['year']}-{date['month']}-{date['day']}-*.snappy.parquet")
-net.coalesce(1).write.mode("overwrite").csv(f"{PATH_O}/2016_07_08.csv/", header=True)
-date["day"]="09"
-net=spark.read.parquet(f"{PATH_I}/orbitaal-snapshot-date-{date['year']}-{date['month']}-{date['day']}-*.snappy.parquet")
-net.coalesce(1).write.mode("overwrite").csv(f"{PATH_O}/2016_07_09.csv/", header=True)
-for dir in ["2016_07_08.csv","2016_07_09.csv"]:
+print("Building SNAPSHOT samples in csv")
+net=spark.read.parquet(f"{PATH_I}/orbitaal-snapshot-date-{date_1['year']}-{date_1['month']}-{date_1['day']}-*.snappy.parquet")
+net.coalesce(1).write.mode("overwrite").csv(f'{PATH_O}/{date_1["year"]}_{date_1["month"]}_{date_1["day"]}.csv/', header=True)
+net=spark.read.parquet(f"{PATH_I}/orbitaal-snapshot-date-{date_2['year']}-{date_2['month']}-{date_2['day']}-*.snappy.parquet")
+net.coalesce(1).write.mode("overwrite").csv(f'{PATH_O}/{date_2["year"]}_{date_2["month"]}_{date_2["day"]}.csv/', header=True)
+for dir in [f'{date_1["year"]}_{date_1["month"]}_{date_1["day"]}.csv',f'{date_2["year"]}_{date_2["month"]}_{date_2["day"]}.csv']:
     PATH_=f'{PATH_O}/{dir}'
     for filename in os.listdir(PATH_):
         if filename.endswith(".csv"):
