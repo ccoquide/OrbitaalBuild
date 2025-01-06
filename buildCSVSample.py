@@ -18,7 +18,7 @@ from pyspark.sql.functions import monotonically_increasing_id, coalesce, date_tr
 import pandas as pd
 import datetime
 import pytz
-from bitunam_utils import getTimeDiff
+from orbitaal_utils import getTimeDiff
 
 ### Init pyspark session
 spark = SparkSession \
