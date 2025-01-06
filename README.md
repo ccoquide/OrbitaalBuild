@@ -1,4 +1,6 @@
-![Logo](logo.png)
+<p align="center" style="margin-bottom: -10px;">
+  <img src="logo.png" alt="Logo" width="200">
+</p>
 
 # OrbitaalBuild
 
