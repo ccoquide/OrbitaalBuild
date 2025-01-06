@@ -9,10 +9,10 @@ For other OS, follow instructions given in bash scripts.
 Python version: 3.8
 
 Required package:
-    . pyspark: 3.5.0
-    . numpy: 1.24.4
-    . pandas: 2.0.3
-    . pytz: 2024.1
+* pyspark: 3.5.0
+* numpy: 1.24.4
+* pandas: 2.0.3
+* pytz: 2024.1
 
 
 
