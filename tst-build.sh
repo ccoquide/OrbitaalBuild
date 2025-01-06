@@ -36,9 +36,9 @@ python3.8 finalSnapshotFilesRenaming.py ${PATH_W}
 rm -R ${PATH_W}/${Dir_5}/; mv ${PATH_W}/SNAPSHOT_NEW/ ${PATH_W}/${Dir_5}/
 
 ### Renaming user details DataFrame and suppresion of unecessary PySpark created files
+for f in $(find ./ -name .*.crc); do rm ${f}; done
+for f in $(find ./ -name _SUCCESS); do rm ${f}; done
 mv ${PATH_W}/${Dir_3}/part-*.snappy.parquet ${PATH_W}/${Dir_3}/orbitaal-nodetable.snappy.parquet
-rm ${PATH_W}/${Dir_3}/.*.crc
-rm ${PATH_W}/${Dir_3}/_SUCCESS
 mv ${PATH_W}/${Dir_3}/add_info/part-*.snappy.parquet ${PATH_W}/${Dir_3}/orbitaal-listaddresses.snappy.parquet
 rm -R ${PATH_W}/${Dir_3}/add_info
 
