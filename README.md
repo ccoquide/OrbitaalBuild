@@ -20,7 +20,7 @@ This repository contains Python and Bash scripts used for generating the ORBITAA
 
 ## Generating Raw Data with Transaction Outputs Information
 
-The first step involves constructing a DataFrame that includes all Bitcoin transaction outputs from raw JSON files. The Bash script located at `./raw_data/build.sh` generates this DataFrame and additional dictionaries from the original JSON files located in `./raw_data/data/sources/original_json`. This process covers the first 6000 blocks.
+The first step involves constructing a DataFrame that includes all Bitcoin transaction outputs from raw JSON files. The Bash script located at `./raw_data/build.sh` generates this DataFrame and additional dictionaries from the original JSON files located in `./raw_data/data/sources/original_json`. This process covers the first 9000 blocks.
 
 All Python scripts and their associated data for this step are located in the `./raw_data` folder.
 
