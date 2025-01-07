@@ -57,16 +57,17 @@ df_with_unique_values = joined.withColumn(
 
 
 
-walletExplorer_hints = spark.read.csv(ADDRESS_BOOK,header=True).drop("page")\
+walletExplorer_hints = spark.read.csv(ADDRESS_BOOK,header=True, sep=",").drop("page")\
     .withColumnRenamed("adresse","ad").withColumnRenamed("service","identity")
-
+print(walletExplorer_hints.show())
 
 
 #ad2cl=spark.read.load(ad2id2cl_file)
 #df_with_unique_values = spark.read.load(ad2id2cl_file)
 
 cl2identity = walletExplorer_hints.join(ad2cl,on="ad",how="left")
-
+#cl2identity = ad2cl.join(walletExplorer_hints,on="ad",how="left")
+print(cl2identity[~cl2identity.identity.isNull()].show())
 #cl2identity.write.save(ad2cl2identity_known_only,mode="overwrite")
 
 #create_ad2identity(current_dir,walletExplorer_hints,ad2cl,current_dir+"/ad2cl2identity")
