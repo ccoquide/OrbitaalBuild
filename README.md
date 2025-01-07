@@ -4,7 +4,7 @@
 
 # OrbitaalBuild
 
-This repository contains Python and Bash scripts used for generating the ORBITAAL dataset, available at [Zenodo](https://zenodo.org/records/12581515). Interested users can construct a smaller version of this dataset, covering the period from January 3, 2009, to June 9, 2010, using the two Bash scripts provided: `./raw_data/build.sh` and `./build.sh`.
+This repository contains Python and Bash scripts used for generating the ORBITAAL dataset, available at [Zenodo](https://zenodo.org/records/12581515). Interested users can construct a smaller version of this dataset, covering the period from January 3, 2009, to November 6, 2010, using the two Bash scripts provided: `./raw_data/build.sh` and `./build.sh`.
 
 ## Operating System and Python Requirements
 
@@ -26,7 +26,7 @@ All Python scripts and their associated data for this step are located in the `.
 
 ## Constructing Orbitaal Temporal Graphs and Node Information Tables
 
-The ORBITAAL dataset, including stream graphs and snapshots, is generated from the transaction outputs DataFrame created in the previous step. To build the dataset automatically, execute the script located at `./build.sh`. This process uses the first 6000 blocks of data.
+The ORBITAAL dataset, including stream graphs and snapshots, is generated from the transaction outputs DataFrame created in the previous step. To build the dataset automatically, execute the script located at `./build.sh`. This process uses the first 9000 blocks of data.
 
 - **Python Scripts**: Located in the repository root.
 - **Dataset Outputs**: The `./DataSet` folder contains the Orbitaal dataset DataFrames in `parquet` format.
